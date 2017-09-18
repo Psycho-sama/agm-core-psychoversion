@@ -58,6 +58,10 @@ var AgmMarker = (function () {
         // tslint:disable-next-line:no-input-rename
         this.clickable = true;
         /**
+         * Custom value so it can be returned.
+         */
+        this.value = false;
+        /**
          * This event emitter gets emitted when the user clicks on the marker.
          */
         this.markerClick = new EventEmitter();
@@ -141,22 +145,22 @@ var AgmMarker = (function () {
             if (_this.openInfoWindow) {
                 _this.infoWindow.forEach(function (infoWindow) { return infoWindow.open(); });
             }
-            _this.markerClick.emit(null);
+            _this.markerClick.emit({ value: _this.value });
         });
         this._observableSubscriptions.push(cs);
         var ds = this._markerManager.createEventObservable('dragend', this)
             .subscribe(function (e) {
-            _this.dragEnd.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() } });
+            _this.dragEnd.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() }, value: _this.value });
         });
         this._observableSubscriptions.push(ds);
         var mover = this._markerManager.createEventObservable('mouseover', this)
             .subscribe(function (e) {
-            _this.mouseOver.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() } });
+            _this.mouseOver.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() }, value: _this.value });
         });
         this._observableSubscriptions.push(mover);
         var mout = this._markerManager.createEventObservable('mouseout', this)
             .subscribe(function (e) {
-            _this.mouseOut.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() } });
+            _this.mouseOut.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() }, value: _this.value });
         });
         this._observableSubscriptions.push(mout);
     };
@@ -193,7 +197,8 @@ AgmMarker.propDecorators = {
     'openInfoWindow': [{ type: Input },],
     'opacity': [{ type: Input },],
     'zIndex': [{ type: Input },],
-    'clickable': [{ type: Input, args: ['markerClickable',] },],
+    'lickable': [{ type: Input, args: ['markerClickable',] },],
+    'value': [{ type: Input },],
     'markerClick': [{ type: Output },],
     'dragEnd': [{ type: Output },],
     'mouseOver': [{ type: Output },],
