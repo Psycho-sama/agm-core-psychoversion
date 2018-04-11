@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GoogleMapsAPIWrapper } from './../google-maps-api-wrapper';
-import { google } from '../google-maps-types';
+
 var MarkerManager = (function () {
     function MarkerManager(_mapsWrapper, _zone) {
         this._mapsWrapper = _mapsWrapper;
