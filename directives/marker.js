@@ -34,6 +34,14 @@ var AgmMarker = (function () {
         // tslint:disable-next-line:no-input-rename
         this.draggable = false;
         /**
+         * Icon Width. Default value is 24. An atypical change ;)  
+         */
+        this.iconWidth = 24;
+        /**
+         * Icon Height. Default value is 24. An atypical change ;)
+         */
+        this.iconHeight = 24;
+        /**
          * If true, the marker is visible
          */
         this.visible = true;
@@ -58,7 +66,7 @@ var AgmMarker = (function () {
         // tslint:disable-next-line:no-input-rename
         this.clickable = true;
         /**
-         * Custom value so it can be returned.
+         * Custom value so it can be returned. An atypical change ;)
          */
         this.value = false;
         /**
@@ -145,21 +153,25 @@ var AgmMarker = (function () {
             if (_this.openInfoWindow) {
                 _this.infoWindow.forEach(function (infoWindow) { return infoWindow.open(); });
             }
+            // Returning an atypical value on emit 
             _this.markerClick.emit({ value: _this.value });
         });
         this._observableSubscriptions.push(cs);
         var ds = this._markerManager.createEventObservable('dragend', this)
             .subscribe(function (e) {
+            // Returning an atypical value on emit 
             _this.dragEnd.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() }, value: _this.value });
         });
         this._observableSubscriptions.push(ds);
         var mover = this._markerManager.createEventObservable('mouseover', this)
             .subscribe(function (e) {
+            // Returning an atypical value on emit 
             _this.mouseOver.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() }, value: _this.value });
         });
         this._observableSubscriptions.push(mover);
         var mout = this._markerManager.createEventObservable('mouseout', this)
             .subscribe(function (e) {
+            // Returning an atypical value on emit 
             _this.mouseOut.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() }, value: _this.value });
         });
         this._observableSubscriptions.push(mout);
@@ -193,6 +205,8 @@ AgmMarker.propDecorators = {
     'label': [{ type: Input },],
     'draggable': [{ type: Input, args: ['markerDraggable',] },],
     'iconUrl': [{ type: Input },],
+    'iconWidth': [{ type: Input },],
+    'iconHeight': [{ type: Input },],
     'visible': [{ type: Input },],
     'openInfoWindow': [{ type: Input },],
     'opacity': [{ type: Input },],

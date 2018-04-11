@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GoogleMapsAPIWrapper } from './../google-maps-api-wrapper';
+import { google } from '../google-maps-types';
 var MarkerManager = (function () {
     function MarkerManager(_mapsWrapper, _zone) {
         this._mapsWrapper = _mapsWrapper;
@@ -53,7 +54,13 @@ var MarkerManager = (function () {
             position: { lat: marker.latitude, lng: marker.longitude },
             label: marker.label,
             draggable: marker.draggable,
-            icon: marker.iconUrl,
+            icon: {
+                url: marker.iconUrl,
+                scaledSize: {
+                    width: marker.iconWidth,
+                    height: marker.iconHeight
+                }
+            },
             opacity: marker.opacity,
             visible: marker.visible,
             zIndex: marker.zIndex,

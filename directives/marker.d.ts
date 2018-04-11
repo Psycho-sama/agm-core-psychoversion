@@ -52,6 +52,14 @@ export declare class AgmMarker implements OnDestroy, OnChanges, AfterContentInit
      */
     iconUrl: string;
     /**
+     * Icon Width for the foreground. An atypical Change ;)
+     */
+    iconWidth: number;
+    /**
+     * Icon Height for the foreground. An atypical Change ;)
+     */
+    iconHeight: number;
+    /**
      * If true, the marker is visible
      */
     visible: boolean;
@@ -74,6 +82,10 @@ export declare class AgmMarker implements OnDestroy, OnChanges, AfterContentInit
      * If true, the marker can be clicked. Default value is true.
      */
     clickable: boolean;
+    /**
+     * Marker Value to be returned on Events. Default value is false. An atypical Change ;)
+     */
+    value: string;
     /**
      * This event emitter gets emitted when the user clicks on the marker.
      */
